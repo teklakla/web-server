@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}ფილმის დამატება{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h3 class="mt-2"><a href="/movies">ყველა ფილმი</a></h3>
+        <h2 class="mt-2">ფილმის დამატება</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="alert-container">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="/add/movie">
+            <div class="form-group">
+                <label for="title">სათაური</label>
+                <input type="text" class="form-control" name="title" id="title" placeholder="შეიყვანეთ სათაური" required>
+            </div>
+            <div class="form-group">
+                <label for="genre">ჟანრი</label>
+                <input type="text" class="form-control" name="genre" id="genre" placeholder="შეიყვანეთ ჟანრი" required>
+            </div>
+            <div class="form-group">
+                <label for="desc">აღწერა</label>
+                <textarea class="form-control" name="desc" id="desc" rows="3" placeholder="შეიყვანეთ აღწერა" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="image">ფოტოს ლინკი</label>
+                <input type="text" class="form-control" name="image" id="image" placeholder="შეიყვანეთ ფოტოს ლინკი" required>
+            </div>
+            <button type="submit" class="btn btn-primary">დამატება</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}{{ movie.title }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="mt-4">{{ movie.title }}</h1>
+
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{{ movie.image }}" class="img-fluid" alt="{{ movie.title }}">
+            </div>
+            <div class="col-md-6">
+                <p><strong>ჟანრი:</strong> {{ movie.genre }}</p>
+                <p><strong>აღწერა:</strong> {{ movie.desc }}</p>
+                <a href="/movies" class="btn btn-secondary">ფილმებზე დაბრუნება</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

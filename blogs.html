@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}ბლოგები{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <h3 class="mt-2"><a href="/">მთავარი გვერდი</a> | <a href="/add/blog">ბლოგის დამატება</a> | <a href="/insert-blogs">srulad.com - დან ბლოგები</a></h3>
+        <h1 class="mt-2">ბლოგები</h1>
+
+        <!-- Search Form -->
+        <form method="GET" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="მოძებნე ბლოგები..." aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">ძებნა</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Show All Button (only display if search_query is present) -->
+        {% if search_query %}
+        <form method="GET" action="/blogs" class="mb-4">
+            <button class="btn btn-secondary" type="submit">ყველა ბლოგი</button>
+        </form>
+        {% endif %}
+
+        <!-- Blogs List -->
+        <div class="row">
+            {% for blog in blogs %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="{{ blog.image }}" class="card-img-top" alt="{{ blog.title }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ blog.title }}</h5>
+                            <a href="/blogs/{{ blog.id }}" class="btn btn-primary">სრულად</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

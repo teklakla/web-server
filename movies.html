@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}ფილმები{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <h3 class="mt-2"><a href="/">მთავარი გვერდი</a> | <a href="/add/movie">ფილმის დამატება</a> | <a href="/insert-movies">srulad.com - დან ფილმები</a></h3>
+        <h1 class="mt-2">ფილმები</h1>
+
+        <!-- Search Form -->
+        <form method="GET" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="მოძებნე ფილმი..." aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">ძებნა</button>
+                </div>
+            </div>
+        </form>
+
+        {% if search_query %}
+        <form method="GET" action="/movies" class="mb-4">
+            <button class="btn btn-secondary" type="submit">ყველა ფილმი</button>
+        </form>
+        {% endif %}
+
+
+        <!-- Movies List -->
+        <div class="row">
+            {% for movie in movies %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="{{ movie.image }}" class="card-img-top" alt="{{ movie.title }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ movie.title }}</h5>
+                            <p class="card-text"><strong>ჟანრი:</strong> {{ movie.genre }}</p>
+                            <a href="/movies/{{ movie.id }}" class="btn btn-primary">სრულად</a>
+
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
+
